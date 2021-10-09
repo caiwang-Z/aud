@@ -29,3 +29,4 @@ if __name__ == '__main__':
 
     q = Queues_T(5)
     print(q.is_empty())
+    print(123)
