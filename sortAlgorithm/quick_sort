@@ -2,6 +2,33 @@
 using namespace std;
 #include<fstream>
 
+// Sorted by descending order
+int partition_reverse(int *p, int left, int right){
+    int tmp = *(p + left);
+    while (left < right){
+        while (left < right && *(p+right) <= tmp){
+            right--;
+        }
+        *(p + left) = *(p + right);
+        while (left < right && *(p + left) >= tmp){
+            left++;
+        }
+        *(p + right) = *(p + left);
+
+    }
+    *(p + left) = tmp;
+    return left;
+}
+
+void quickSort_reverse(int * p, int left, int right){
+    if (left < right){
+        int mid = partition_reverse(p, left, right);
+        quickSort_reverse(p, left, mid - 1);
+        quickSort_reverse(p, mid + 1, right);
+    }
+}
+
+// Sorted by ascending order
 int partition(int *p, int left, int right){
     int tmp = *(p + left);
     while (left < right){
